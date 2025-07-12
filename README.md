@@ -56,6 +56,8 @@ run  *npx playwright install* to install the browser configurations of playwrigh
 
 run *npx playwright test* to run the test
 
+# Execution Video of Screen recording is available on project level under name ExecutionVideoReducedSize.mp4  
+
 # Sample Screenshots
 
 **Jenkins Execution**
