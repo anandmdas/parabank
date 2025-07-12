@@ -2,7 +2,7 @@
     {
         "scenarioName":"Register user",
         "data":{
-            "firstName": "parasoftTestUser4",
+            "firstName": "parasoftTestUser1",
             "lastName": "parasoftTestUserLN",
             "address": "sampleAddress",
             "state": "vic",
@@ -10,16 +10,16 @@
             "zipcode": "3003",
             "phone":"0400401231",
             "ssn":"1212",
-            "username": "parasoftTestUser4",
+            "username": "parasoftTestUser1",
             "password": "@automationpass2343"
         }
     },
     {
         "scenarioName":"Create savings account and perform transactions",
         "data":{
-            "firstName": "parasoftTestUser4",
+            "firstName": "parasoftTestUser1",
             "lastName": "parasoftTestUserLN",
-            "username": "parasoftTestUser4",
+            "username": "parasoftTestUser1",
             "password": "@automationpass2343",
             "accountType":"SAVINGS"
         }
@@ -27,9 +27,9 @@
     {
         "scenarioName":"Transfer funds from one account to another",
         "data":{
-            "firstName": "parasoftTestUser4",
+            "firstName": "parasoftTestUser1",
             "lastName": "parasoftTestUserLN",
-            "username": "parasoftTestUser4",
+            "username": "parasoftTestUser1",
             "password": "@automationpass2343",
             "amountTransfer":"50"
         }
@@ -37,9 +37,9 @@
     {
         "scenarioName":"Validate Bill payment service",
         "data":{
-            "firstName": "parasoftTestUser4",
+            "firstName": "parasoftTestUser1",
             "lastName": "parasoftTestUserLN",
-            "username": "parasoftTestUser4",
+            "username": "parasoftTestUser1",
             "password": "@automationpass2343",
             "payeeName": "TestPayee",
             "address": "sampleAddress",
@@ -55,8 +55,10 @@
     {
         "scenarioName":"Validate bank account transactions API",
         "data":{
-            "firstName": "parasoftTestUser4",
+            "firstName": "parasoftTestUser1",
             "lastName": "parasoftTestUserLN",
+            "username": "parasoftTestUser1",
+            "password": "@automationpass2343",
             "amount":"30",
             "transactionType":"Debit"
         }
