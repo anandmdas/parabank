@@ -1,0 +1,64 @@
+[
+    {
+        "scenarioName":"Register user",
+        "data":{
+            "firstName": "parasoftTestUser4",
+            "lastName": "parasoftTestUserLN",
+            "address": "sampleAddress",
+            "state": "vic",
+            "city": "Melbourne",
+            "zipcode": "3003",
+            "phone":"0400401231",
+            "ssn":"1212",
+            "username": "parasoftTestUser4",
+            "password": "@automationpass2343"
+        }
+    },
+    {
+        "scenarioName":"Create savings account and perform transactions",
+        "data":{
+            "firstName": "parasoftTestUser4",
+            "lastName": "parasoftTestUserLN",
+            "username": "parasoftTestUser4",
+            "password": "@automationpass2343",
+            "accountType":"SAVINGS"
+        }
+    },
+    {
+        "scenarioName":"Transfer funds from one account to another",
+        "data":{
+            "firstName": "parasoftTestUser4",
+            "lastName": "parasoftTestUserLN",
+            "username": "parasoftTestUser4",
+            "password": "@automationpass2343",
+            "amountTransfer":"50"
+        }
+    },
+    {
+        "scenarioName":"Validate Bill payment service",
+        "data":{
+            "firstName": "parasoftTestUser4",
+            "lastName": "parasoftTestUserLN",
+            "username": "parasoftTestUser4",
+            "password": "@automationpass2343",
+            "payeeName": "TestPayee",
+            "address": "sampleAddress",
+            "city":"Melbourne",
+            "state":"vic",
+            "zipCode": "3000",
+            "phoneNumber": "0412908888",
+            "accountNum":"1231239",
+            "amount":"30",
+            "transactionType":"Debit"
+        }
+    },
+    {
+        "scenarioName":"Validate bank account transactions API",
+        "data":{
+            "firstName": "parasoftTestUser4",
+            "lastName": "parasoftTestUserLN",
+            "amount":"30",
+            "transactionType":"Debit"
+        }
+    }
+]

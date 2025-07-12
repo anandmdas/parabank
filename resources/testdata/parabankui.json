@@ -1,0 +1,26 @@
+[
+    {
+        "scenarioName":"Register user and validate the home page navigation",
+        "data":{
+            "firstName": "parasoftTestUser3",
+            "lastName": "parasoftTestUserLN",
+            "address": "sampleAddress",
+            "state": "vic",
+            "city": "Melbourne",
+            "zipcode": "3003",
+            "phone":"0400401231",
+            "ssn":"1212",
+            "username": "parasoftTestUser3",
+            "password": "@automationpass2343"
+        }
+    },
+    {
+        "scenarioName":"Validate Menu navigation",
+        "data":{
+            "firstName": "parasoftTestUser3",
+            "lastName": "parasoftTestUserLN",
+            "username": "parasoftTestUser3",
+            "password": "@automationpass2343"
+        }
+    }
+]

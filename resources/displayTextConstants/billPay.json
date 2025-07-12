@@ -1,0 +1,7 @@
+
+{
+    "parasoftPageTitle" :"ParaBank | Bill Pay",
+    "billPayHeader" : "Bill Payment Service",
+    "billpayComplete":"Bill Payment Complete",
+    "billPaySuccessFootnote":" Bill Payment to TestPayee in the amount of $__amount__ from account __account__ was successful."
+}
