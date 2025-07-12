@@ -2,7 +2,7 @@
     {
         "scenarioName":"Register user and validate the home page navigation",
         "data":{
-            "firstName": "parasoftTestUser2",
+            "firstName": "parasoftTestUser12",
             "lastName": "parasoftTestUserLN",
             "address": "sampleAddress",
             "state": "vic",
@@ -10,16 +10,16 @@
             "zipcode": "3003",
             "phone":"0400401231",
             "ssn":"1212",
-            "username": "parasoftTestUser2",
+            "username": "parasoftTestUser12",
             "password": "@automationpass2343"
         }
     },
     {
         "scenarioName":"Validate Menu navigation",
         "data":{
-            "firstName": "parasoftTestUser2",
+            "firstName": "parasoftTestUser12",
             "lastName": "parasoftTestUserLN",
-            "username": "parasoftTestUser2",
+            "username": "parasoftTestUser12",
             "password": "@automationpass2343"
         }
     }
