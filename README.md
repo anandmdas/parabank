@@ -16,26 +16,24 @@ Test scenarios covered are under /tests/specs folder
 
 parabank/
 ├── resources/
-│ ├── displayTextConstants/   
-│ │ └── < Page based JSON files >.json
-│ ├── testdata/
-│ │  └── < Spec based JSON file>.json
-├── test-results/
+│   ├── displayTextConstants/
+│   │   └── < Page based JSON files >.json
+│   ├── testdata/
+│   │   └── < Spec based JSON file >.json
+│   └── test-results/
 ├── tests/
-│ ├── pages/
-│ │ ├── < Page based Folders>/
-│ │ │ ├── < Page Object>.object.ts
-│ │ │ └── < Page Reusable methods>.page.ts
-│ └── specs/
-| | |──< Spec files which has the test scenarios>
-| |──utils
-| | |──utils.ts
+│   ├── pages/
+│   │   ├── < Page based Folders >
+│   │   │   ├── < Page Object >.object.ts
+│   │   │   └── < Page Reusable methods >.page.ts
+│   └── specs/
+│       └── < Spec files which has the test scenarios >
+├── utils/
 ├── .gitignore
 ├── Jenkinsfile
 ├── package-lock.json
 ├── package.json
 ├── playwright.config.ts
-├── README.md
 └── tsconfig.json
 
 In the Above structure
