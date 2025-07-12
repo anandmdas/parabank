@@ -15,26 +15,26 @@ Test scenarios covered are under /tests/specs folder
 # High level Project Structure
 
 parabank/
-├── resources/
-│   ├── displayTextConstants/
-│   │   └── < Page based JSON files >.json
-│   ├── testdata/
-│   │   └── < Spec based JSON file >.json
-│   └── test-results/
-├── tests/
-│   ├── pages/
-│   │   ├── < Page based Folders >
-│   │   │   ├── < Page Object >.object.ts
-│   │   │   └── < Page Reusable methods >.page.ts
-│   └── specs/
-│       └── < Spec files which has the test scenarios >
-├── utils/
-├── .gitignore
-├── Jenkinsfile
-├── package-lock.json
-├── package.json
-├── playwright.config.ts
-└── tsconfig.json
+├── resources/  
+│   ├── displayTextConstants/  
+│   │   └── < Page based JSON files >.json  
+│   ├── testdata/  
+│   │   └── < Spec based JSON file >.json  
+│   └── test-results/  
+├── tests/  
+│   ├── pages/  
+│   │   ├── < Page based Folders >  
+│   │   │   ├── < Page Object >.object.ts  
+│   │   │   └── < Page Reusable methods >.page.ts  
+│   └── specs/  
+│       └── < Spec files which has the test scenarios >  
+├── utils/  
+├── .gitignore  
+├── Jenkinsfile  
+├── package-lock.json  
+├── package.json  
+├── playwright.config.ts  
+└── tsconfig.json  
 
 In the Above structure
 1. displayTextConstants has the static text which are displayed in each page. This is used as the expected values for assertions
@@ -49,6 +49,9 @@ In the Above structure
 # Execution
 
 Before making the execution make sure that the node versions are installed
+
 run *npm install* to install all the package dependencies
+
 run  *npx playwright install* to install the browser configurations of playwright
+
 run *npx playwright test* to run the test
