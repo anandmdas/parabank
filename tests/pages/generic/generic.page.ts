@@ -16,9 +16,9 @@ export class GenericPage{
     }
     /**
      * @description Method to validate the user details on left pane in Parasoft web page
+     * @param testData An object which contains all the testdata for the scenario being executed
      */
-    public async validateUserDetails(){
-        let testData =(global as any).scenarioData;
+    public async validateUserDetails(testData:any){
         await Utility.validateObjectText(this.page,genericPageObjects.userDetail,'Welcome '+testData.firstName+' '+testData.lastName,this.testInfo)
     }
 

@@ -42,7 +42,7 @@ In the Above structure
 3. Test folder has page folder, specs folder and utils folder
 4. page folder has the objects for each page and the reusable methods used in each of these page
 5. specs floder has the test scenarios
-6. utils folder has the framework level actions like clicking validations and loging related methods
+6. utils folder has the framework level actions like clicking validations and loging related methods and testdataUtility method for reading the data
 7. Jenkinsfile has the config and groovy commands to run in Jenkins
 8. playwright.config.ts has the playwright related configuration
 

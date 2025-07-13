@@ -28,9 +28,9 @@ export class BillPay {
     /**
      * @description Method to Pay the bill and check the bill payment was successful
      * @param accountNum Account number from which the bill payment to be made
+     * @param testData An object which contains all the testdata for the scenario being executed
      */
-    public async payBill(accountNum:string){
-        let testData =(global as any).scenarioData;
+    public async payBill(accountNum:string,testData:any){
         await Utility.inputValue(this.page,billPayObject.payeeNameTextField,testData.payeeName,this.testInfo)
         await Utility.inputValue(this.page,billPayObject.addressTextField,testData.address,this.testInfo)
         await Utility.inputValue(this.page,billPayObject.cityTextField,testData.city,this.testInfo)

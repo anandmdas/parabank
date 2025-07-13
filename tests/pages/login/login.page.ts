@@ -32,9 +32,9 @@ export class LoginPage {
 
     /**
      * @description Method to login with registered user
+     * @param testData An object which contains all the testdata for the scenario being executed
      */
-    public async login(){
-        let testData =(global as any).scenarioData;
+    public async login(testData:any){
         await Utility.inputValue(this.page,loginPageObjects.userNameInput,testData.username,this.testInfo)
         await Utility.inputValue(this.page,loginPageObjects.passwordField,testData.password,this.testInfo)
         await Utility.click(this.page,loginPageObjects.loginButton,this.testInfo)

@@ -8,12 +8,22 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async click(page:Page, locator: string, testInfo:TestInfo){
-        await page.locator(locator).click()
-         let logMessage='object with locator '+locator+ 'is clicked'
-            await testInfo.attach(logMessage,{
+        try {
+            await page.locator(locator).click()
+            let logMessage='object with locator '+locator+ 'is clicked'
+            await testInfo.attach('Successfully Clicked',{
                 body: logMessage,
                 contentType: 'text/plain'
             })
+        } catch (error) {
+            let logMessage='object with locator '+locator+ 'is not clicked'
+            await testInfo.attach('Click Failed',{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
+        }
+         
     }
 
     /**
@@ -23,13 +33,21 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async validateText(expectedText:string, actualText:string,testInfo: TestInfo){
-       
+       try {
             expect(actualText).toBe(expectedText,);
             let logMessage=actualText+' and '+ this.validateText+' is compared and is same'
             await testInfo.attach(logMessage,{
                 body: logMessage,
                 contentType: 'text/plain'
             })
+       } catch (error) {
+            let logMessage=actualText+' and '+ this.validateText+' is compared and is not same'
+            await testInfo.attach('Comparison Failed',{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
+       }
     }
 
     /**
@@ -40,27 +58,21 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async validateObjectText(page:Page, locator:string, expectedText:string,testInfo: TestInfo){
-        await page.locator(locator).waitFor({state:"visible"})
-        await expect(page.locator(locator)).toHaveText(expectedText)
-        let logMessage='object with locator '+locator+ 'is having the text '+expectedText
+        try {
+            await page.locator(locator).waitFor({state:"visible"})
+            await expect(page.locator(locator)).toHaveText(expectedText)
+            let logMessage='object with locator '+locator+ 'is having the text '+expectedText
             await testInfo.attach(logMessage,{
                 body: logMessage,
                 contentType: 'text/plain'
             })
-    }
-
-    /**
-     * @description Method to get the testdata of the current scenario execution
-     * @param filename Name of the json file where the scenario testdata is present
-     * @param scenarioName Name of the scenario for which the data to be fetched
-     */
-    public static async getScenarioData(filename:string,scenarioName:string){
-        const jsonTestData=require('../../resources/testdata/'+filename+'.json')
-        for(let scenarioIndex=0; scenarioIndex<jsonTestData.length;scenarioIndex++){
-            const scenario = jsonTestData[scenarioIndex];
-            if(scenario['scenarioName']===scenarioName){
-                (global as any).scenarioData = scenario['data']
-            }
+        } catch (error) {
+            let logMessage='Fetching object with locator '+locator+ 'and comparing the object text with '+expectedText+' has failed'
+            await testInfo.attach(logMessage,{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
         }
     }
 
@@ -72,12 +84,21 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async inputValue(page:Page, locator:string,inputText:string , testInfo:TestInfo){
-        await page.locator(locator).fill(inputText)
-        let logMessage='object with locator '+locator+ 'is inputed with the text '+inputText
+        try {
+            await page.locator(locator).fill(inputText)
+            let logMessage='object with locator '+locator+ 'is inputed with the text '+inputText
             await testInfo.attach(logMessage,{
                 body: logMessage,
                 contentType: 'text/plain'
             })
+        } catch (error) {
+            let logMessage='Failed to input text on object with locator '+locator
+            await testInfo.attach('Input Text Failed',{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
+        }
     }
 
     /**
@@ -88,12 +109,21 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async selectFromDropdown(page:Page, locator:string,value:string,testInfo:TestInfo){
-        await page.locator(locator).selectOption(value)
-         let logMessage=value+' is selected from object with locator '+locator
-            await testInfo.attach(logMessage,{
+        try {
+            await page.locator(locator).selectOption(value)
+            let logMessage=value+' is selected from object with locator '+locator
+            await testInfo.attach(value+' is selected from dropdown',{
                 body: logMessage,
                 contentType: 'text/plain'
             })
+        } catch (error) {
+            let logMessage='Unable to select '+value+' from object with locator '+locator
+            await testInfo.attach('Failed to Select Value fromDropdown',{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
+        }
     }
 
     /**
@@ -104,8 +134,12 @@ export class Utility{
      * @returns The value fetched from the object
      */
     public static async getTextValue(page:Page, locator:string,testInfo:TestInfo){
-        await page.locator(locator).waitFor({state:"visible"})
-        return await page.locator(locator).innerText()
+        try {
+            await page.locator(locator).waitFor({state:"visible"})
+            return await page.locator(locator).innerText()
+        } catch (error) {
+           throw(error) 
+        }
     }
 
     /**
@@ -115,12 +149,22 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async validateTextContains(fullText:string,partialText:string, testInfo:TestInfo){
-        expect(fullText).toContain(partialText)
-        let logMessage=fullText+' contains '+ partialText
-        await testInfo.attach(logMessage,{
-            body: logMessage,
-            contentType: 'text/plain'
-        })
+        try {
+            expect(fullText).toContain(partialText)
+            let logMessage=fullText+' contains '+ partialText
+            await testInfo.attach(logMessage,{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+        } catch (error) {
+            let logMessage=fullText+' does not contains '+ partialText
+            await testInfo.attach(logMessage,{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
+        }
+        
     }
 
     /**
@@ -130,12 +174,22 @@ export class Utility{
      * @param testInfo TestInfo Context of the execution for loging the details
      */
     public static async validateTwoValues(actual:any, expected:any, testInfo:TestInfo){
-        expect(actual).toBe(expected)
-        let logMessage=actual+' and '+ expected+' is validated'
-        await testInfo.attach(logMessage,{
-            body: logMessage,
-            contentType: 'text/plain'
-        })
+        try {
+            expect(actual).toBe(expected)
+            let logMessage=actual+' and '+ expected+' is validated'
+            await testInfo.attach(logMessage,{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+        } catch (error) {
+            let logMessage=actual+' and '+ expected+' is validated and failed'
+            await testInfo.attach('Comparison Failed',{
+                body: logMessage,
+                contentType: 'text/plain'
+            })
+            throw(error)
+        }
+        
     }
 
 }

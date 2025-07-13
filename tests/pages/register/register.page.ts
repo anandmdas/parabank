@@ -18,10 +18,10 @@ export class RegisterPage {
     
     /**
      * @description Method to register the user with the test data and Validate if registration is successful
+     * @param testData An object which contains all the testdata for the scenario being executed
      */
-    public async registerUser(){
+    public async registerUser(testData:any){
     await Utility.validateObjectText(this.page,registerPageObjects.pageTitle,registerPageDisplayText.registerPageHeading,this.testInfo)
-    let testData =(global as any).scenarioData;
     await Utility.inputValue(this.page,registerPageObjects.firstNameInput,testData.firstName,this.testInfo)
     await Utility.inputValue(this.page,registerPageObjects.lastNameInput,testData.lastName,this.testInfo)
     await Utility.inputValue(this.page,registerPageObjects.addressInput,testData.address,this.testInfo)

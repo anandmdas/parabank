@@ -29,9 +29,9 @@ export class TransferFunds {
     /**
      * @description Reusable method to perform transfer funds and check the transfer is successful
      * @param accountNumber The Account number from which the transfer needs to be made
+     * @param testData An object which contains all the testdata for the scenario being executed
      */
-    public async transferFund(accountNumber:string){
-        let testData =(global as any).scenarioData;
+    public async transferFund(accountNumber:string,testData:any){
 
         //Performing the fund transfer
         await Utility.inputValue(this.page, transferFundsObject.amountInputText, testData.amountTransfer,this.testInfo );

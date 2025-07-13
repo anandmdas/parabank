@@ -10,6 +10,7 @@ import { OpenNewAccount } from '../pages/open-new-account/openNewAccount.page'
 import { RequestLoan } from '../pages/request-loan/requestLoan.page'
 import { TransferFunds } from '../pages/transfer-funds/transferFunds.page'
 import { UpdateProfile } from '../pages/update-profile/updateProfile.page'
+import { getScenarioData } from '../utils/testdataUtility'
 
 test.describe.serial('Open Account and perform transactions', async()=>{
     
@@ -23,10 +24,10 @@ test.describe.serial('Open Account and perform transactions', async()=>{
         let login =new LoginPage(page,testInfo)
         let registerPage = new RegisterPage(page,testInfo)
 
-        await Utility.getScenarioData('parabankuiBankTransactions',testInfo.title)
+        const testData = await getScenarioData('parabankuiBankTransactions', testInfo.title);
         await login.navigateToParasoft();
         await login.navigateToRegister();
-        await registerPage.registerUser()
+        await registerPage.registerUser(testData)
 
     })
 
@@ -36,13 +37,13 @@ test.describe.serial('Open Account and perform transactions', async()=>{
         let generic = new GenericPage(page,testInfo)
         let openNewAccount = new OpenNewAccount(page,testInfo)
     
-        await Utility.getScenarioData('parabankuiBankTransactions',testInfo.title)
+        const testData = await getScenarioData('parabankuiBankTransactions', testInfo.title);
         await login.navigateToParasoft()
-        await login.login();
-        await generic.validateUserDetails();
+        await login.login(testData);
+        await generic.validateUserDetails(testData);
         await generic.navigateToOpenNewAccount();
         await openNewAccount.validateLandingPage()
-        sharedData.accountNumber = await openNewAccount.createNewAccount()
+        sharedData.accountNumber = await openNewAccount.createNewAccount(testData)
     })
 
     test('Validate account info table', async({page }, testInfo)=>{
@@ -51,10 +52,10 @@ test.describe.serial('Open Account and perform transactions', async()=>{
         let generic = new GenericPage(page,testInfo)
         let accountOverview = new AccountOverviewPage(page,testInfo)
 
-        await Utility.getScenarioData('parabankuiBankTransactions',testInfo.title)
+        const testData = await getScenarioData('parabankuiBankTransactions', testInfo.title);
         await login.navigateToParasoft()
-        await login.login();
-        await generic.validateUserDetails();
+        await login.login(testData);
+        await generic.validateUserDetails(testData);
         await generic.navigateToAccountsOverview()
         await accountOverview.validateOverviewPage()
         await accountOverview.validateLatestAccountAmount(sharedData.accountNumber)
@@ -67,13 +68,13 @@ test.describe.serial('Open Account and perform transactions', async()=>{
         let generic = new GenericPage(page,testInfo)
         let transferFunds = new TransferFunds(page,testInfo)
 
-        await Utility.getScenarioData('parabankuiBankTransactions',testInfo.title)
+        const testData = await getScenarioData('parabankuiBankTransactions', testInfo.title);
         await login.navigateToParasoft()
-        await login.login();
-        await generic.validateUserDetails();
+        await login.login(testData);
+        await generic.validateUserDetails(testData);
         await generic.navigateToTransferFunds()
         await transferFunds.validateLandingPage()
-        await transferFunds.transferFund(sharedData.accountNumber)
+        await transferFunds.transferFund(sharedData.accountNumber,testData)
     })
 
     test('Validate Bill payment service', async({page,baseURL},testInfo)=>{
@@ -82,25 +83,30 @@ test.describe.serial('Open Account and perform transactions', async()=>{
         let generic = new GenericPage(page,testInfo)
         let billPay = new BillPay(page,testInfo)
 
-        await Utility.getScenarioData('parabankuiBankTransactions',testInfo.title)
+        const testData = await getScenarioData('parabankuiBankTransactions', testInfo.title);
+        if (!testData) {
+            throw new Error("Test data not found for scenario: " + testInfo.title);
+        }
         await login.navigateToParasoft()
-        await login.login();
-        await generic.validateUserDetails()
+        await login.login(testData);
+        await generic.validateUserDetails(testData)
         await generic.navigateToBillPay()
         await billPay.validateLandingPage()
-        await billPay.payBill(sharedData.accountNumber)
-        sharedData.payeeName=(global as any).scenarioData.payeeName
+        await billPay.payBill(sharedData.accountNumber,testData)
+        sharedData.payeeName=testData.payeeName
     })
 
     test('Validate bank account transactions API',async({page, request, baseURL}, testInfo)=>{
         let login = new LoginPage(page,testInfo)
 
+        const testData = await getScenarioData('parabankuiBankTransactions', testInfo.title);
+         if (!testData) {
+            throw new Error("Test data not found for scenario: " + testInfo.title);
+        }
         await login.navigateToParasoft()
-        await login.login();
-        await Utility.getScenarioData('parabankuiBankTransactions',testInfo.title)
-        let testData = await (global as any).scenarioData;
+        await login.login(testData);
         let url = baseURL+'/parabank/services_proxy/bank/accounts/'+sharedData.accountNumber+'/transactions/amount/'+testData.amount
         let findTransaction = new FindTransactions(page,testInfo)
-        await findTransaction.validateFindTransactionsApi(url,sharedData,testInfo)
+        await findTransaction.validateFindTransactionsApi(url,sharedData,testData,testInfo)
     })
 })

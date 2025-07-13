@@ -10,6 +10,7 @@ import { TransferFunds } from '../pages/transfer-funds/transferFunds.page';
 import { UpdateProfile } from '../pages/update-profile/updateProfile.page';
 import { FindTransactions } from '../pages/find-transactions/findTransactions.page';
 import { OpenNewAccount } from '../pages/open-new-account/openNewAccount.page';
+import { getScenarioData } from '../utils/testdataUtility';
 
 test.describe.serial('Registration and navigation flow', async()=>{
     test('Register user and validate the home page navigation', async ({page }, testInfo) => {
@@ -17,10 +18,10 @@ test.describe.serial('Registration and navigation flow', async()=>{
         let login =new LoginPage(page,testInfo)
         let registerPage = new RegisterPage(page,testInfo)
         
-        await Utility.getScenarioData('parabankui',testInfo.title)
+        const testData = await getScenarioData('parabankui', testInfo.title);
         await login.navigateToParasoft();
         await login.navigateToRegister();
-        await registerPage.registerUser()
+        await registerPage.registerUser(testData)
     })
 
     test('Validate Menu navigation', async({page}, testInfo)=>{
@@ -36,10 +37,10 @@ test.describe.serial('Registration and navigation flow', async()=>{
         let updateProfile = new UpdateProfile(page,testInfo)
 
 
-        await Utility.getScenarioData('parabankui',testInfo.title)
+        const testData = await getScenarioData('parabankui', testInfo.title);
         await login.navigateToParasoft()
-        await login.login();
-        await generic.validateUserDetails();
+        await login.login(testData);
+        await generic.validateUserDetails(testData);
         await accountOverview.validateOverviewPage()
         await generic.navigateToOpenNewAccount();
         await openNewAccount.validateLandingPage()

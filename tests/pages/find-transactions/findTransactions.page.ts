@@ -29,10 +29,10 @@ export class FindTransactions {
      * @description Method to Validate the Transactions performed using API get call
      * @param url url for the API get request
      * @param sharedData object which has { accountNumber: string, payeeName:string }
+     * @param testData An object which contains all the testdata for the scenario being executed
      * @param testInfo TestInfo Context of the execution for loging the details
      */
-    public async validateFindTransactionsApi(url:string,sharedData: { accountNumber: string, payeeName:string }, testInfo:TestInfo){
-       let testData = await (global as any).scenarioData;
+    public async validateFindTransactionsApi(url:string,sharedData: { accountNumber: string, payeeName:string },testData:any, testInfo:TestInfo){
         const response = await this.page.request.get(url)
         expect(response.status()).toBe(200)
         const responseBody =await response.json();

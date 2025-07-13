@@ -27,10 +27,11 @@ export class OpenNewAccount {
 
     /**
      * @description Method to create a new account from an existing account
+     * @param testData An object which contains all the testdata for the scenario being executed
      * @returns Returns the account number of newly created account
      */
-    public async createNewAccount(){
-        await Utility.selectFromDropdown(this.page,openNewAccount.accountTypeDropdown, (global as any).scenarioData.accountType,this.testInfo)
+    public async createNewAccount(testData:any){
+        await Utility.selectFromDropdown(this.page,openNewAccount.accountTypeDropdown, testData.accountType,this.testInfo)
         await this.page.locator(openNewAccount.fromAccountDropdown).selectOption({ index: 0 })
         await Utility.click(this.page,openNewAccount.openNewAccountButton,this.testInfo)
         let accountNumber = await Utility.getTextValue(this.page,openNewAccount.newAccountNumber,this.testInfo)
